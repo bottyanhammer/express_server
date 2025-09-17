@@ -40,5 +40,5 @@ export const removeUser = async (id: number) => {
 export const modifiedUser = async (id: number, user: Partial<User>) => {
     const [result] = await pool.query<mysql.ResultSetHeader>("UPDATE users SET nev = ?, cim = ?, szuletesiDatum = ? WHERE id = ?", [user.nev, user.cim, user.szuletesiDatum, id]);
     // ????
-    return {...user, id: result.insertId};
+    return result.affectedRows > 0;
 }

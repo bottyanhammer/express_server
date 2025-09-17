@@ -35,7 +35,8 @@ export const updateUser = async (req: express.Request, res: express.Response) =>
     const updateUser = req.body;
     const id = parseInt(req.params.id!, 10);
     try{
-        const user = await modifiedUser(id, updateUser);
+        const result = await modifiedUser(id, updateUser);
+        const user = result ? // TODO
         res.status(201).type("application/json").send(user);
     }catch(error) {
         res.status(500).type("application/json").send("Nem sikerült módosítani a felhasználó adatait!");
